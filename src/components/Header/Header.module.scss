@@ -1,0 +1,40 @@
+.header {
+  padding: 10px;
+  display: flex;
+  width: 100vw;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(142, 187, 220, 1);
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  .title {
+
+    margin-right: 10px;
+    height: 60px;
+
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    /* or 188% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-feature-settings: 'cv11' on;
+
+    color: #070606;
+    text-shadow: 1px 1px 0px #f7f7f7;
+  }
+
+  .select {
+
+
+
+    .item {}
+  }
+}
