@@ -1,10 +1,10 @@
-import { Header } from "../Header"
+import Schedule from "../../pages/Schedule"
 import styles from "./App.module.scss"
 
 function App() {
   return (
     <div className={styles.wrapper}>
-      <Header />
+      <Schedule />
     </div>
   )
 }
