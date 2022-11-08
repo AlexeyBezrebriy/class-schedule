@@ -1,4 +1,4 @@
-import Schedule from "../../pages/Schedule"
+import Schedule from "../../pages/SchedulePage"
 import styles from "./App.module.scss"
 
 function App() {

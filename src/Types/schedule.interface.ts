@@ -10,7 +10,8 @@ interface ITeacher
 interface ILesson
 {
   title: string
-  parity?: boolean
+  alternativeTitle?: string
+  alternativeLink?: string
   link: string
   daytime: daytime
   teacher: ITeacher
