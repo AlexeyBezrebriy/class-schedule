@@ -1,13 +1,31 @@
+import { ReactNode } from "react"
 import styles from "./DropDown.module.scss"
 
-type Props = {}
+type groupsProps = {
+  groups: string[]
+  onChange: Function
+}
 
-function DropDown({}: Props) {
+function displayGroupOptions(groups: string[]): ReactNode {
+  return groups.map((value) => {
+    return (
+      <option key={value} className={styles.item}>
+        {value}
+      </option>
+    )
+  })
+}
+
+function DropDown({ groups, onChange }: groupsProps) {
   return (
     <div>
-      <select title="group" className={styles.select}>
-        <option className={styles.item}>група 2222</option>
-        <option className={styles.item}>група 2221</option>
+      <select
+        id="listOfGroup"
+        title="group"
+        className={styles.select}
+        onChange={(event) => onChange(event)}
+      >
+        {displayGroupOptions(groups)}
       </select>
     </div>
   )

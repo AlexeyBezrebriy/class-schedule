@@ -1,4 +1,5 @@
 type daytime = "8:00" | "9:30" | "11:00" | "13:00" | "14:30" | "16:00"
+type day = "Понеділок" | "Вівторок" | "Среда" | "Четвер" | "П'ятниця" | "Субота"
 
 interface ITeacher
 {
@@ -15,6 +16,7 @@ interface ILesson
   link: string
   daytime: daytime
   teacher: ITeacher
+  alternativeTeacher?: ITeacher
 }
 
 interface ILessons
@@ -22,8 +24,11 @@ interface ILessons
   [day: string]: ILesson[]
 }
 
-export interface ISchedule
+interface ISchedule
 {
   group: string
   lessons: ILessons[]
 }
+
+export type { ISchedule, ILessons, day }
+
