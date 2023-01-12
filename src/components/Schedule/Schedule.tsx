@@ -20,12 +20,18 @@ function displaySchedule({ currentSchedule }: IScheduleProp): ReactNode {
                     <div className={styles.time}>{lesson.daytime}</div>
                     <div className={styles.lesson_Item}>
                       <div className={styles.main_Lesson}>
-                        <a href={lesson.link}>{lesson.title}</a>
+                        <a target="_blank" href={lesson.link} rel="noreferrer">
+                          {lesson.title}
+                        </a>
                         <p className={styles.teacher}>{lesson.teacher.name}</p>
                       </div>
                       {lesson.alternativeTitle ? (
                         <div className={styles.alternative_Lesson}>
-                          <a href={lesson.alternativeLink}>
+                          <a
+                            target="_blank"
+                            href={lesson.alternativeLink}
+                            rel="noreferrer"
+                          >
                             {lesson.alternativeTitle}
                           </a>
                           <p className={styles.teacher}>
