@@ -1,12 +1,10 @@
-import Schedule from "../../pages/SchedulePage"
+import { SchedulePage } from "../../pages/SchedulePage"
 import styles from "./App.module.scss"
 
-function App() {
-  return (
-    <div className={styles.wrapper}>
-      <Schedule />
-    </div>
-  )
-}
+const App = () => (
+  <div className={styles.root}>
+    <SchedulePage />
+  </div>
+)
 
 export { App }

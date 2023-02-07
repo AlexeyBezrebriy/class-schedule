@@ -1,26 +1,31 @@
-import { ReactNode } from "react"
+import { ReactElement } from "react"
 import type { ILessons } from "../../Types/schedule.interface"
 import styles from "./Schedule.module.scss"
 
 interface IScheduleProp {
-  currentSchedule: ILessons[] | undefined
+  currentLessons?: ILessons[]
 }
 
-function displaySchedule({ currentSchedule }: IScheduleProp): ReactNode {
-  if (currentSchedule) {
-    return currentSchedule.map((lessons) => {
-      return Object.keys(lessons).map((day, index) => {
-        return (
+export const Schedule = ({ currentLessons }: IScheduleProp): ReactElement => (
+  <main className={styles.root}>
+    <div className={styles.items}>
+      {currentLessons?.map((lessons) =>
+        Object.entries(lessons).map(([day, lessons]) => (
           <div key={day} className={styles.item}>
             <p className={styles.day}>{day}</p>
             <div className={styles.lessons}>
-              {Object.values(lessons)[index].map((lesson) => {
+              {lessons.map((lesson) => {
                 return (
                   <div key={lesson.daytime} className={styles.lesson_Flex}>
                     <div className={styles.time}>{lesson.daytime}</div>
                     <div className={styles.lesson_Item}>
                       <div className={styles.main_Lesson}>
-                        <a target="_blank" href={lesson.link} rel="noreferrer">
+                        <a
+                          className={styles.link}
+                          target="_blank"
+                          href={lesson.link}
+                          rel="noopener noreferrer"
+                        >
                           {lesson.title}
                         </a>
                         <p className={styles.teacher}>{lesson.teacher.name}</p>
@@ -28,9 +33,10 @@ function displaySchedule({ currentSchedule }: IScheduleProp): ReactNode {
                       {lesson.alternativeTitle ? (
                         <div className={styles.alternative_Lesson}>
                           <a
+                            className={styles.link}
                             target="_blank"
                             href={lesson.alternativeLink}
-                            rel="noreferrer"
+                            rel="noopener noreferrer"
                           >
                             {lesson.alternativeTitle}
                           </a>
@@ -45,18 +51,8 @@ function displaySchedule({ currentSchedule }: IScheduleProp): ReactNode {
               })}
             </div>
           </div>
-        )
-      })
-    })
-  }
-}
-
-export default function Schedule({ currentSchedule }: IScheduleProp) {
-  return (
-    <main className={styles.container}>
-      <div className={styles.items}>{displaySchedule({ currentSchedule })}</div>
-    </main>
-  )
-}
-
-export { Schedule }
+        ))
+      )}
+    </div>
+  </main>
+)

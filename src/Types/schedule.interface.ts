@@ -26,8 +26,7 @@ interface ILessons
 
 interface ISchedule
 {
-  group: string
-  lessons: ILessons[]
+  [group: string]: ILessons[]
 }
 
 export type { ISchedule, ILessons, day }
