@@ -1,5 +1,5 @@
-type daytime = "8:00" | "9:30" | "11:00" | "13:00" | "14:30" | "16:00"
-type day = "Понеділок" | "Вівторок" | "Среда" | "Четвер" | "П'ятниця" | "Субота"
+type Time = "8:00" | "9:30" | "11:00" | "13:00" | "14:30" | "16:00"
+type Day = "Понеділок" | "Вівторок" | "Середа" | "Четвер" | "Пʼятниця" | "Субота"
 
 interface ITeacher
 {
@@ -14,9 +14,10 @@ interface ILesson
   alternativeTitle?: string
   alternativeLink?: string
   link: string
-  daytime: daytime
+  time: Time
   teacher: ITeacher
   alternativeTeacher?: ITeacher
+  active?: boolean;
 }
 
 interface ILessons
@@ -29,5 +30,5 @@ interface ISchedule
   [group: string]: ILessons[]
 }
 
-export type { ISchedule, ILessons, day }
+export type { ISchedule, ILessons, ILesson, Day }
 

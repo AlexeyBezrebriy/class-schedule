@@ -15,10 +15,10 @@ export const DropDown = ({ groups, onChange }: DropdownProps) => (
       onChange={onChange}
     >
       {groups.map((value) => (
-        <option key={value} className={styles.item}>
-          {value}
-        </option>
-      ))}
+          <option key={value} className={styles.item}>
+            {value}
+          </option>
+        ))}
     </select>
   </div>
 )

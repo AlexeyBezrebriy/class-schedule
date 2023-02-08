@@ -6,17 +6,18 @@ import { Schedule } from "./../components/Schedule"
 import styles from "./SchedulePage.module.scss"
 
 export const SchedulePage = () => {
-  const [currentLessons, setCurrentLessons] = useState<ILessons[]>(
-    schedules[Object.keys(schedules)[0]]
-  )
+  const [currentLessons, setCurrentLessons] = useState<ILessons[]>(schedules[Object.keys(schedules)[0]])
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentLessons(schedules[e.target.value])
+    setCurrentLessons(schedules[e.target.value]);
   }
-
+  
   return (
     <div className={styles.root}>
-      <Header groups={Object.keys(schedules)} onChange={onChange} />
+      <Header
+        groups={Object.keys(schedules)}
+        onChange={onChange}
+      />
       <Schedule currentLessons={currentLessons} />
     </div>
   )

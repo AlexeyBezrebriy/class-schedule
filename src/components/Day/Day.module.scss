@@ -1,0 +1,26 @@
+.root {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  border-bottom: 1px solid;
+
+  @media (max-width:375px) {
+    grid-template-columns: 56px 1fr;
+  }
+
+  &:last-child {
+    border-bottom: none
+  }
+
+  .day {
+    font-size: larger;
+    letter-spacing: 5px;
+    padding: 10px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    writing-mode: vertical-rl;
+    transform: rotateZ(180deg);
+  }
+}
