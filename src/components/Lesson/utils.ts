@@ -1,7 +1,9 @@
-import { LESSON_DURATION, MINUTES_PER_HOUR, DAYS_MAP } from "./constants";
 import { Day } from "../../Types/schedule.interface";
+import { DAYS_MAP } from "../../assets/constants";
+import { LESSON_DURATION, MINUTES_PER_HOUR } from "./constants";
 
-export const isActiveLesson = (day: Day, lessonTime: string) => {
+export const isActiveLesson = (day: Day, lessonTime: string) =>
+{
   const [lessonHours, lessonMinutes] = lessonTime.split(':').map(Number);
   const currentDate = new Date();
   const isDayMatch = DAYS_MAP[day] === currentDate.getDay();

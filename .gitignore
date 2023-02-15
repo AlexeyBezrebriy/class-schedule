@@ -24,4 +24,6 @@ yarn-error.log*
 
 # data
 src/assets/data
-src/data
+
+# firebase settings
+src/firebase/firebase-config.ts

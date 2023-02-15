@@ -1,0 +1,8 @@
+{
+  "editor.mouseWheelScrollSensitivity": 1.5,
+  "editor.scrollbar.scrollByPage": true,
+  "editor.scrollBeyondLastColumn": 2,
+  "editor.stickyScroll.enabled": true,
+  "editor.smartSelect.selectLeadingAndTrailingWhitespace": true,
+  "editor.renderWhitespace": "none"
+}

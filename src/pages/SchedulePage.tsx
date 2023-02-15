@@ -1,24 +1,38 @@
-import { useState } from "react"
-import { ILessons } from "../Types/schedule.interface"
-import { schedule as schedules } from "../assets/data/shcedule"
+import { useEffect, useState } from "react"
+import { ILessons, ISchedule } from "../Types/schedule.interface"
+// import { schedule as schedules } from "../assets/data/shcedule"
 import { Header } from "../components/Header"
+import { Loader } from "../components/Loader"
+import { getSchedule, settingsForGetSchedule } from "../firebase"
 import { Schedule } from "./../components/Schedule"
 import styles from "./SchedulePage.module.scss"
 
 export const SchedulePage = () => {
-  const [currentLessons, setCurrentLessons] = useState<ILessons[]>(schedules[Object.keys(schedules)[0]])
+  const [loading, setLoading] = useState<boolean>(true)
+  const [schedules, setSchedules] = useState<ISchedule>({})
+  const [currentLessons, setCurrentLessons] = useState<ILessons[]>()
+
+  useEffect(() => {
+    getSchedule(settingsForGetSchedule)
+      .then((response) => {
+        const scheduleData = response as ISchedule
+        setSchedules(scheduleData)
+        setLoading(false)
+        setCurrentLessons(scheduleData[Object.keys(scheduleData)[0]])
+      })
+      .catch((reason) => console.error(reason))
+  }, [])
+
+  // setSchedule(settingsForSetMethod)
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentLessons(schedules[e.target.value]);
+    setCurrentLessons(schedules[e.target.value])
   }
-  
+
   return (
     <div className={styles.root}>
-      <Header
-        groups={Object.keys(schedules)}
-        onChange={onChange}
-      />
-      <Schedule currentLessons={currentLessons} />
+      <Header groups={Object.keys(schedules)} onChange={onChange} />
+      {loading ? <Loader /> : <Schedule currentLessons={currentLessons} />}
     </div>
   )
 }
