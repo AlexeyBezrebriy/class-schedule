@@ -3,6 +3,10 @@
   flex-direction: row;
   border-bottom: 1px solid #000;
 
+  @media (prefers-color-scheme: dark) {
+    border-bottom: 1px solid #fc4343;
+  }
+
   &:last-child {
     border: none;
   }
@@ -18,9 +22,14 @@
     justify-content: center;
     align-items: center;
     width: 50px;
-    border-right: 1px solid;
-    border-left: 1px solid;
     text-align: center;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+
+    @media (prefers-color-scheme: dark) {
+      border-right: 1px solid #fc4343;
+      border-left: 1px solid #fc4343;
+    }
   }
 
   .lesson_Item {

@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
 import { ILessons, ISchedule } from "../Types/schedule.interface"
-// import { schedule as schedules } from "../assets/data/shcedule"
 import { Header } from "../components/Header"
 import { Loader } from "../components/Loader"
-import { getSchedule, settingsForGetSchedule } from "../firebase"
+import {
+  getSchedule,
+  setSchedule,
+  settingsForGetSchedule,
+  settingsForSetSchedule,
+} from "../firebase"
 import { Schedule } from "./../components/Schedule"
 import styles from "./SchedulePage.module.scss"
 
@@ -23,7 +27,7 @@ export const SchedulePage = () => {
       .catch((reason) => console.error(reason))
   }, [])
 
-  // setSchedule(settingsForSetMethod)
+  // setSchedule(settingsForSetSchedule)
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrentLessons(schedules[e.target.value])
