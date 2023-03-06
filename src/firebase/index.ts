@@ -1,4 +1,6 @@
-export { settingsForGetSchedule, settingsForSetSchedule } from "./settings";
-export { getSchedule } from './getSchedule';
-export { setSchedule } from "./setSchedule";
+export { getNumerator } from "./numerator/getNumerator";
+export { getSchedule } from './schedule/getSchedule';
+export { setNumerator } from "./numerator/setNumerator";
+export { setSchedule } from "./schedule/setSchedule";
+export { settingsForGetNumerator, settingsForGetSchedule, settingsForSetSchedule, settingsOfDbForSetNumerator } from "./settings";
 

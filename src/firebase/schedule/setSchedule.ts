@@ -1,5 +1,5 @@
 import { Firestore, doc, setDoc } from "firebase/firestore";
-import { ISchedule } from "../Types/schedule.interface";
+import { ISchedule } from "../../Types/schedule.interface";
 
 export type SetScheduleProps = {
   db: Firestore,

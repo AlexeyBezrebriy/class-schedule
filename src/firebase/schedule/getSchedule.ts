@@ -1,13 +1,13 @@
 import { DocumentData, DocumentReference, Firestore, runTransaction } from 'firebase/firestore';
-import { Day, ILessons, ISchedule } from '../Types/schedule.interface';
-import { DAYS_MAP } from './../assets/constants';
+import { Day, ILessons, ISchedule } from '../../Types/schedule.interface';
+import { DAYS_MAP } from '../../assets/constants';
 
-export type GetScheduleProp = {
+export type GetScheduleProps = {
   db: Firestore,
   sfDocRef: DocumentReference<DocumentData>
 }
 
-export const getSchedule = ({ db, sfDocRef }: GetScheduleProp) =>
+export const getSchedule = ({ db, sfDocRef }: GetScheduleProps) =>
 {
   return new Promise((resolve, rejected) =>
   {
