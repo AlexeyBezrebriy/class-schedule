@@ -18,7 +18,7 @@ export const isActiveLesson = (day: Day, lessonTime: string) =>
   return withinRange;
 };
 
-export const isMainLesson = (numeratorRef: boolean, alternativeLesson: boolean) =>
+export const isMainLesson = (numeratorRef: boolean, alternativeLesson: boolean)=>
 {
   if (numeratorRef === true || alternativeLesson === false)
   {

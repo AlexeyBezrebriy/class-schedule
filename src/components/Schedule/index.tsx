@@ -1,1 +1,2 @@
-export {Schedule} from "./Schedule"
+export { Schedule } from "./Schedule"
+export { useIntervalUpdate } from "./useIntervalUpdate"

@@ -1,15 +1,12 @@
 import type { ILessons, Day as TDay } from "../../Types/schedule.interface"
 import { Day } from "../Day"
 import styles from "./Schedule.module.scss"
-import { useIntervalUpdate } from "./useIntervalUpdate"
 
 interface IScheduleProp {
   currentLessons?: ILessons[]
 }
 
 export const Schedule = ({ currentLessons }: IScheduleProp) => {
-  useIntervalUpdate()
-
   return (
     <main className={styles.root}>
       <div>

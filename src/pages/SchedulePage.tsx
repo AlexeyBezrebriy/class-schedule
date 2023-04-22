@@ -11,7 +11,7 @@ import {
   settingsForGetSchedule,
   settingsOfDbForSetNumerator,
 } from "../firebase"
-import { Schedule } from "./../components/Schedule"
+import { Schedule, useIntervalUpdate } from "./../components/Schedule"
 import styles from "./SchedulePage.module.scss"
 import { NumeratorContext } from "./context"
 
@@ -36,8 +36,6 @@ export const SchedulePage = () => {
     getNumerator(settingsForGetNumerator).then((response) => {
       const numeratorData = response as INumerator
 
-      // console.log(numeratorData)
-
       numeratorRef.current = numeratorData["numerator"]
       setNumerator({ ...settingsOfDbForSetNumerator, ...numeratorData })
     })
@@ -48,6 +46,7 @@ export const SchedulePage = () => {
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrentLessons(schedules[e.target.value])
   }
+  useIntervalUpdate()
 
   return (
     <NumeratorContext.Provider value={{ numeratorRef }}>

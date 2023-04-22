@@ -22,7 +22,7 @@ export const Lesson = ({ day, lesson }: LessonProps) => {
           data-active={
             isMainLesson(numeratorRef.current, alternativeLesson)
               ? String(isActiveLesson(day, lesson.time))
-              : false
+              : String(false)
           }
         >
           <a
@@ -41,7 +41,7 @@ export const Lesson = ({ day, lesson }: LessonProps) => {
             data-active={
               !isMainLesson(numeratorRef.current, alternativeLesson)
                 ? String(isActiveLesson(day, lesson.time))
-                : false
+                : String(false)
             }
           >
             <a
