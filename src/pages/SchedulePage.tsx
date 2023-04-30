@@ -1,58 +1,54 @@
-import { useEffect, useRef, useState } from "react"
-import { INumerator } from "../Types/numerator.interface"
-import { ILessons, ISchedule } from "../Types/schedule.interface"
+import { useEffect, useState } from "react"
 import { Header } from "../components/Header"
 import { Loader } from "../components/Loader"
 import {
-  getNumerator,
-  getSchedule,
-  setNumerator,
-  settingsForGetNumerator,
-  settingsForGetSchedule,
-  settingsOfDbForSetNumerator,
-} from "../firebase"
+  useFirebaseNumerator,
+  useFirebaseSchedule,
+  useLocalStorage,
+} from "../hooks"
 import { Schedule, useIntervalUpdate } from "./../components/Schedule"
 import styles from "./SchedulePage.module.scss"
 import { NumeratorContext } from "./context"
 
 export const SchedulePage = () => {
   const [loading, setLoading] = useState<boolean>(true)
-  const [schedules, setSchedules] = useState<ISchedule>({})
-  const [currentLessons, setCurrentLessons] = useState<ILessons[]>()
-  const numeratorRef = useRef<boolean>(false)
+  const [isGroupUpdated, setIsGroupUpdated] = useState(false)
+  const [schedulesRef, currentLessonsRef] = useFirebaseSchedule()
+  const [storage, setStorage] = useLocalStorage([], "group")
+  const numeratorRef = useFirebaseNumerator()
 
   useEffect(() => {
-    getSchedule(settingsForGetSchedule)
-      .then((response) => {
-        const scheduleData = response as ISchedule
-        setSchedules(scheduleData)
-        setLoading(false)
-        setCurrentLessons(scheduleData[Object.keys(scheduleData)[0]])
-      })
-      .catch((reason) => console.error(reason))
-  }, [])
-
-  useEffect(() => {
-    getNumerator(settingsForGetNumerator).then((response) => {
-      const numeratorData = response as INumerator
-
-      numeratorRef.current = numeratorData["numerator"]
-      setNumerator({ ...settingsOfDbForSetNumerator, ...numeratorData })
-    })
-  }, [])
-
-  // setSchedule(settingsForSetSchedule)
+    if (currentLessonsRef.current) {
+      setLoading(false)
+      setIsGroupUpdated(false)
+      if (storage.length === 0) {
+        setStorage(Object.keys(schedulesRef.current))
+      }
+    }
+  }, [currentLessonsRef.current, isGroupUpdated])
 
   const onChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCurrentLessons(schedules[e.target.value])
+    const group = e.target.value as keyof typeof schedulesRef.current
+    let groups = [group as string, ...Object.keys(schedulesRef.current)]
+    groups = [...new Set(groups)]
+    setStorage(groups)
+
+    if (schedulesRef.current) {
+      currentLessonsRef.current = schedulesRef.current[group]
+      setIsGroupUpdated(true)
+    }
   }
   useIntervalUpdate()
 
   return (
     <NumeratorContext.Provider value={{ numeratorRef }}>
       <div className={styles.root}>
-        <Header groups={Object.keys(schedules)} onChange={onChange} />
-        {loading ? <Loader /> : <Schedule currentLessons={currentLessons} />}
+        <Header groups={storage} onChange={onChange} />
+        {loading ? (
+          <Loader />
+        ) : (
+          <Schedule currentLessons={currentLessonsRef.current} />
+        )}
       </div>
     </NumeratorContext.Provider>
   )
