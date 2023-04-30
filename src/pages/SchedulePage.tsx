@@ -21,8 +21,11 @@ export const SchedulePage = () => {
     if (currentLessonsRef.current) {
       setLoading(false)
       setIsGroupUpdated(false)
+
       if (storage.length === 0) {
         setStorage(Object.keys(schedulesRef.current))
+      } else {
+        currentLessonsRef.current = schedulesRef.current[storage[0]]
       }
     }
   }, [currentLessonsRef.current, isGroupUpdated])
